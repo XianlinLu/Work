@@ -1,0 +1,111 @@
+/* Entrance choreography shared by the home page, collections and case studies. */
+:root {
+  --ease-out-quart: cubic-bezier(.165, .84, .44, 1);
+  --ease-in-quint: cubic-bezier(.755, .05, .855, .06);
+}
+
+@keyframes hero-enter {
+  from { opacity: 0; transform: translateY(var(--enter-distance, 7vh)) rotateX(-15deg); }
+  to { opacity: 1; transform: translateY(0) rotateX(0); }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes page-enter {
+  from { opacity: 0; transform: translateY(var(--enter-distance, 0)); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes title-enter {
+  from { transform: translateY(7vh) rotateX(-15deg); }
+  to { transform: translateY(0) rotateX(0); }
+}
+@keyframes uncover {
+  from { height: 100%; }
+  to { height: 0; }
+}
+
+.section-hero .hero-top {
+  animation: hero-enter 2s var(--ease-out-quart) .5s both;
+}
+.section-hero .hero-bottom {
+  --enter-distance: 2vh;
+  animation: hero-enter 1.5s var(--ease-out-quart) 1s both;
+}
+.section-hero .loading-overlap {
+  animation: uncover 1.5s var(--ease-in-quint) 1.2s both;
+}
+
+/* These templates have a page entrance. Other case studies appear immediately. */
+:is(
+  [data-wf-page="65bbcbb7c0cfc5f781743eda"],
+  [data-wf-page="65bbcbb7c0cfc5f781743ed6"],
+  [data-wf-page="65bbcbb7c0cfc5f781743ed3"],
+  [data-wf-page="65bbcbb7c0cfc5f781743ed8"],
+  [data-wf-page="65bbcbb7c0cfc5f781743ed4"],
+  [data-wf-page="687d855bffa302046dc1acfe"],
+  [data-wf-page="687db561698c0a7c3f045e8a"],
+  [data-wf-page="687dc44375039cae0cae751b"],
+  [data-wf-page="687d9bba055b7fd30b15ff34"],
+  [data-wf-page="687dc6677569491fe1958387"],
+  [data-wf-page="687dc9a837a984fb1f0b493c"],
+  [data-wf-page="692699d257f0f198911b874b"],
+  [data-wf-page="6927b00eda518a2c8d7b8ea3"],
+  [data-wf-page="6927bc4b1c0f0df60f9d50e8"]
+) {
+  & .section-top {
+    animation: fade-in 1.5s var(--ease-out-quart) .2s both;
+  }
+  & .block-top {
+    animation: title-enter 1.5s var(--ease-out-quart) .2s both;
+  }
+  & :is(.section-contact, .section) {
+    animation: fade-in 1.5s var(--ease-out-quart) .4s both;
+  }
+  & .section-cms {
+    --enter-distance: 5vh;
+    animation: page-enter 1.5s var(--ease-out-quart) .4s both;
+  }
+  & .loading-overlap {
+    animation: uncover 1.5s var(--ease-in-quint) .6s both;
+  }
+}
+
+.scroll-appear {
+  opacity: 0 !important;
+  transform: translateY(50px) !important;
+  transition: transform .5s linear, opacity .5s linear;
+}
+.scroll-appear.in-view {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+.link-black { color: #f3f3f3; transition: color .2s linear; }
+.link-black:is(:hover, :focus-visible) { color: #003cff; transition-duration: .1s; }
+
+@property --background { syntax: "<color>"; inherits: true; initial-value: #131313; }
+@property --border { syntax: "<color>"; inherits: true; initial-value: #e6e6e640; }
+@property --paragraphs { syntax: "<color>"; inherits: true; initial-value: black; }
+@property --heading { syntax: "<color>"; inherits: true; initial-value: #e6e6e6; }
+@property --heading-alt { syntax: "<color>"; inherits: true; initial-value: #e6e6e64d; }
+
+html[data-contrast] {
+  transition-property: --background, --border, --paragraphs, --heading, --heading-alt;
+  transition-duration: .3s;
+  transition-timing-function: cubic-bezier(.25, .46, .45, .94);
+}
+html[data-contrast="light"] {
+  --background: #e6e6e6;
+  --border: rgb(0 0 0 / 25%);
+  --paragraphs: rgb(0 0 0 / 65%);
+  --heading: black;
+  --heading-alt: rgb(0 0 0 / 30%);
+}
+html[data-contrast="dark"] {
+  --background: black;
+  --border: rgb(230 230 230 / 25%);
+  --paragraphs: rgb(230 230 230 / 65%);
+  --heading: #e6e6e6;
+  --heading-alt: rgb(230 230 230 / 30%);
+}

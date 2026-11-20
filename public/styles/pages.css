@@ -1,0 +1,22 @@
+.portfolio-page { display: contents; }
+body:has(.portfolio-page:is(.white-bg, .body-5, .body-6, .body-8)) { background-color: var(--white); }
+body:has(.portfolio-page:is(.body-2, .black-bg)) { background-color: var(--black); }
+
+/* Keep the two-column OOBE demonstration within the desktop canvas. */
+.grid-9 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.grid-9 > * {
+  min-width: 0;
+  max-width: 100%;
+}
+.grid-9 video {
+  max-width: 100%;
+  height: auto;
+}
+
+.gesture-library {
+  width: 100vw;
+  max-width: 100%;
+  height: auto;
+}

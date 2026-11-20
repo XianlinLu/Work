@@ -1,0 +1,19 @@
+@font-face {
+  font-family: Montserrat;
+  src: url("../assets/JTUSjIg1_i6t8kCHKm459WlhyyTh89Y-c4f4a8cd0b92.woff2") format("woff2");
+}
+html, body { height: 100%; margin: 0; background: #fafafa; }
+body { display: grid; grid-template-rows: 42px minmax(0, 1fr); }
+nav {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font: 12px Montserrat, sans-serif;
+  color: #333;
+}
+a { color: #ed225d; text-decoration: none; }
+a:hover { text-decoration: underline; }
+.mark { display: flex; background: #ed225d; }
+.mark img { width: 56px; height: 42px; }
+.source { margin-left: auto; margin-right: 18%; }
+iframe { width: 100%; height: 100%; border: 0; }
